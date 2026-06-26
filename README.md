@@ -203,11 +203,11 @@ El resultado debe ser comparable a una landing page profesional de un portal dep
 ![Portada 1](screenshots/Portada1.PNG)
 ![Portada 2](screenshots/Portada2.PNG)
 
-### Landing — OpenAI Codex (GPT-5.5)
+### Landing Page — OpenAI Codex (GPT-5.5)
 ![Codex 1](screenshots/Codex1.PNG)
 ![Codex 2](screenshots/Codex2.PNG)
 
-### Landing — Claude Code (Sonnet 4.6)
+### Landing Page — Claude Code (Sonnet 4.6)
 ![Claude 1](screenshots/Claude1.PNG)
 ![Claude 2](screenshots/Claude2.PNG)
 
