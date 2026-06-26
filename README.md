@@ -200,13 +200,16 @@ El resultado debe ser comparable a una landing page profesional de un portal dep
 ## Capturas de pantalla
 
 ### Portada
-*(agregar screenshot)*
+![Portada 1](screenshots/Portada1.png)
+![Portada 2](screenshots/Portada2.png)
 
 ### Landing — OpenAI Codex (GPT-5.5)
-*(agregar screenshot)*
+![Codex 1](screenshots/Codex1.png)
+![Codex 2](screenshots/Codex2.png)
 
 ### Landing — Claude Code (Sonnet 4.6)
-*(agregar screenshot)*
+![Claude 1](screenshots/Claude1.png)
+![Claude 2](screenshots/Claude2.png)
 
 ---
 
