@@ -21,7 +21,7 @@
 
 ## Deploy unificado
 
-🔗 **[Ver proyecto completo](https://PENDING.vercel.app)**
+🔗 **[Ver proyecto completo](https://pfo-2-prompt-engineering-agentes-ia.vercel.app/)**
 > *(Link disponible tras el deploy en Vercel)*
 
 ---
