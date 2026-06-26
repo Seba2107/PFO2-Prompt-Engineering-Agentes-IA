@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albiceleste Fans — Argentina Copa Mundial 2026</title>
+  <meta name="description" content="Centro de Fans Argentinos. Seguimiento, predicciones y comunidad alrededor de Argentina en la Copa Mundial 2026. Campeones defensores." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0E1A;
+      color: #E8F4F8;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+    /* ─── CSS VARIABLES ─────────────────────────────────────────────── */
+    :root {
+      --blue: #00A8E8;
+      --blue-dark: #0077AA;
+      --blue-deep: #003366;
+      --white: #FFFFFF;
+      --gold: #FFD700;
+      --gold-dark: #CC9900;
+      --bg-dark: #0A0E1A;
+      --bg-card: #111827;
+      --bg-card2: #161D2E;
+      --text: #E8F4F8;
+      --text-muted: #8BA3B8;
+      --border: rgba(0, 168, 232, 0.2);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow-blue: 0 8px 32px rgba(0, 168, 232, 0.25);
+      --shadow-gold: 0 8px 32px rgba(255, 215, 0, 0.2);
+    }
+
+    /* ─── DIAMOND PATTERN TEXTURE ─────────────────────────────────── */
+    .diamond-bg {
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 18px,
+          rgba(0,168,232,0.04) 18px,
+          rgba(0,168,232,0.04) 20px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 18px,
+          rgba(0,168,232,0.04) 18px,
+          rgba(0,168,232,0.04) 20px
+        );
+    }
+
+    /* ─── UTILITY CLASSES ─────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--white);
+    }
+    .section-title span { color: var(--blue); }
+    .section-title .gold { color: var(--gold); }
+    .section-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .tag-green { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .tag-gold  { background: rgba(255,215,0,0.12); color: var(--gold); border: 1px solid rgba(255,215,0,0.3); }
+    .tag-blue  { background: rgba(0,168,232,0.12); color: var(--blue); border: 1px solid rgba(0,168,232,0.3); }
+
+    /* ─── SCROLL REVEAL ───────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── BUTTONS ─────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform 0.4s ease;
+    }
+    .btn:hover::after { transform: translateX(110%) skewX(-15deg); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(0,168,232,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,168,232,0.6);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #FFA500);
+      color: #0A0E1A;
+      box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255,215,0,0.6);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-3px);
+    }
+    .btn-outline-blue {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline-blue:hover {
+      background: var(--blue);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 1: NAVBAR                                             */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nav-logo-main {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .nav-logo-main span { color: var(--blue); }
+    .nav-badge {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.25);
+      padding: 2px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.35s cubic-bezier(.77,0,.18,1);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,14,26,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; display: flex; }
+    .mobile-menu a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 2: HERO                                               */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #001F3F 0%, #003366 30%, #00518A 60%, #0A0E1A 100%);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 28px,
+          rgba(255,255,255,0.025) 28px,
+          rgba(255,255,255,0.025) 30px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 28px,
+          rgba(255,255,255,0.025) 28px,
+          rgba(255,255,255,0.025) 30px
+        );
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-glow-1 {
+      width: 600px; height: 600px;
+      background: rgba(0,168,232,0.2);
+      top: -100px; right: -100px;
+    }
+    .hero-glow-2 {
+      width: 400px; height: 400px;
+      background: rgba(255,215,0,0.08);
+      bottom: 100px; left: 100px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s 0.2s forwards;
+    }
+    .hero-eyebrow-line {
+      display: inline-block;
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroIn 0.9s 0.35s forwards;
+    }
+    .hero-title .blue { color: var(--blue); }
+    .hero-title .gold { color: var(--gold); text-shadow: 0 0 40px rgba(255,215,0,0.4); }
+    .hero-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      color: rgba(232,244,248,0.75);
+      max-width: 550px;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s 0.5s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s 0.65s forwards;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroIn 0.8s 0.8s forwards;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      align-self: stretch;
+    }
+    .hero-days-champ {
+      background: linear-gradient(135deg, rgba(0,168,232,0.15), rgba(255,215,0,0.08));
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-align: center;
+    }
+
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 3: LEYENDAS                                           */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #leyendas {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #0A0E1A 0%, #060A14 100%);
+    }
+    .leyendas-header { text-align: center; margin-bottom: 64px; }
+    .leyendas-header .section-title { margin-bottom: 16px; }
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      margin: 16px auto;
+    }
+    .gold-divider-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .gold-divider-line.rev { background: linear-gradient(90deg, var(--gold), transparent); }
+    .gold-divider-star { color: var(--gold); font-size: 1.2rem; }
+
+    .leyendas-grid {
+      display: grid;
+      grid-template-columns: 1fr 2px 1fr;
+      gap: 0 40px;
+      align-items: start;
+    }
+    .leyenda-divider {
+      background: linear-gradient(180deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+      width: 2px;
+      align-self: stretch;
+    }
+    .leyenda-card {
+      background: linear-gradient(135deg, #111827, #0D1520);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .leyenda-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-blue);
+    }
+    .leyenda-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+    }
+    .leyenda-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      border: 3px solid rgba(255,215,0,0.3);
+      box-shadow: 0 0 30px rgba(0,168,232,0.3);
+      position: relative;
+    }
+    .leyenda-avatar.gold-ring {
+      background: linear-gradient(135deg, #B8860B, var(--gold));
+      box-shadow: 0 0 30px rgba(255,215,0,0.4);
+    }
+    .leyenda-champ-icon {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: var(--gold);
+      color: #0A0E1A;
+      font-size: 1rem;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--bg-dark);
+    }
+    .leyenda-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .leyenda-period {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .leyenda-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .leyenda-stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .leyenda-stat-card .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .leyenda-stat-card.gold-stat .num { color: var(--gold); }
+    .leyenda-stat-card .label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+    .leyenda-quote {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .leyenda-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .leyenda-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(0,168,232,0.12);
+      border: 1px solid rgba(0,168,232,0.3);
+      color: var(--blue);
+    }
+    .leyenda-badge.gold { background: rgba(255,215,0,0.1); border-color: rgba(255,215,0,0.3); color: var(--gold); }
+
+    .leyenda-legacy {
+      text-align: center;
+      margin-top: 60px;
+      padding: 36px;
+      background: linear-gradient(135deg, rgba(0,168,232,0.08), rgba(255,215,0,0.06));
+      border: 1px solid rgba(255,215,0,0.15);
+      border-radius: var(--radius-lg);
+    }
+    .leyenda-legacy p {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+    .leyenda-legacy span { color: var(--white); }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 4: NOTICIAS                                           */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #noticias {
+      padding: 100px 0;
+      background: var(--bg-dark);
+    }
+    .noticias-header { margin-bottom: 48px; }
+    .noticias-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .noticia-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .noticia-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px var(--blue);
+    }
+    .noticia-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .noticia-img-1 { background: linear-gradient(135deg, #003366, #005588); }
+    .noticia-img-2 { background: linear-gradient(135deg, #1a0a00, #4a3000); }
+    .noticia-img-3 { background: linear-gradient(135deg, #001a33, #003366); }
+    .noticia-img-icon { font-size: 5rem; opacity: 0.5; }
+    .noticia-img-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(10,14,26,0.9), transparent);
+    }
+    .noticia-img-badge {
+      position: absolute;
+      top: 16px; left: 16px;
+    }
+    .noticia-body { padding: 24px; }
+    .noticia-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .noticia-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .noticia-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .noticia-excerpt {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .noticia-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .noticia-card:hover .noticia-link { gap: 12px; }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 5: PREDICCIONES                                       */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #predicciones {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #060A14 0%, #0A0E1A 100%);
+    }
+    .predicciones-header { text-align: center; margin-bottom: 64px; }
+    .predicciones-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .chance-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .chance-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .chance-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .progress-bar-wrap {
+      height: 12px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      border-radius: 6px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(.16,1,.3,1);
+    }
+    .camino-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .camino-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .camino-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .camino-step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .camino-step:last-child { border-bottom: none; }
+    .camino-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-done { background: #22c55e; box-shadow: 0 0 10px rgba(34,197,94,0.5); }
+    .dot-active { background: var(--gold); box-shadow: 0 0 10px rgba(255,215,0,0.5); animation: pulse-dot 1.5s infinite; }
+    .dot-next { background: rgba(255,255,255,0.15); }
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,0.5); transform: scale(1); }
+      50% { box-shadow: 0 0 20px rgba(255,215,0,0.8); transform: scale(1.3); }
+    }
+    .camino-step-info { flex: 1; }
+    .camino-stage {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .camino-rival {
+      font-size: 0.9rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+    .camino-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--blue);
+    }
+    .camino-pct.done { color: #22c55e; }
+
+    .fortalezas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .fortaleza-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .fortaleza-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-blue);
+    }
+    .fortaleza-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .fortaleza-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .fortaleza-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Tabla historica */
+    .tabla-historica {
+      margin-top: 60px;
+    }
+    .tabla-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    table.historica {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    table.historica th {
+      background: rgba(0,168,232,0.1);
+      padding: 14px 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      text-align: left;
+    }
+    table.historica td {
+      padding: 14px 20px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    table.historica tr:hover td { background: rgba(255,255,255,0.025); }
+    .result-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .rb-winner { background: rgba(255,215,0,0.15); color: var(--gold); }
+    .rb-final  { background: rgba(0,168,232,0.12); color: var(--blue); }
+    .rb-semi   { background: rgba(139,163,184,0.12); color: var(--text-muted); }
+    .rb-cuartos { background: rgba(139,163,184,0.10); color: var(--text-muted); }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 6: COMUNIDAD                                          */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #comunidad {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #0A0E1A 0%, #060A14 100%);
+    }
+    .comunidad-header { text-align: center; margin-bottom: 56px; }
+    .community-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 56px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .comm-stat {
+      flex: 1;
+      text-align: center;
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+    }
+    .comm-stat:last-child { border-right: none; }
+    .comm-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .comm-stat-num.gold { color: var(--gold); }
+    .comm-stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .testimonio-card {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+    .testimonio-card:hover {
+      border-color: rgba(0,168,232,0.4);
+      transform: translateY(-4px);
+    }
+    .testimonio-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .fan-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .avatar-blue { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+    .avatar-gold { background: linear-gradient(135deg, var(--gold), #FFA500); color: #0A0E1A; }
+    .avatar-teal { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .fan-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .fan-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .testimonio-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .testimonio-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .testimonio-likes {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .comunidad-cta { text-align: center; }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 7: FIXTURE                                            */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #fixture {
+      padding: 100px 0;
+      background: var(--bg-dark);
+    }
+    .fixture-header { margin-bottom: 48px; }
+    .fixture-group-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      padding: 6px 20px;
+      border-radius: 6px;
+      margin-bottom: 32px;
+    }
+    .fixture-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .fixture-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      transition: all 0.3s ease;
+    }
+    .fixture-card:hover {
+      border-color: rgba(0,168,232,0.4);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .fixture-card.resultado { border-left: 4px solid #22c55e; }
+    .fixture-card.proximo  { border-left: 4px solid var(--blue); }
+    .fixture-team {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .fixture-team.right { justify-content: flex-end; flex-direction: row-reverse; }
+    .fixture-flag { font-size: 2.2rem; }
+    .fixture-team-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .fixture-team-country {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .fixture-score {
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px 20px;
+      min-width: 100px;
+    }
+    .fixture-score-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .fixture-score-vs {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+    .fixture-score-date {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .fixture-meta {
+      text-align: center;
+      min-width: 140px;
+    }
+    .fixture-status {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .status-done { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .status-next { background: rgba(0,168,232,0.12); color: var(--blue); border: 1px solid rgba(0,168,232,0.3); }
+    .fixture-venue {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .btn-remind {
+      margin-top: 10px;
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: transparent;
+      border: 1px solid rgba(0,168,232,0.4);
+      color: var(--blue);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-remind:hover { background: var(--blue); color: var(--white); }
+
+    /* Tabla de grupo */
+    .grupo-section { margin-top: 48px; }
+    .grupo-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    table.grupo {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    table.grupo th {
+      background: rgba(0,168,232,0.1);
+      padding: 12px 16px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      text-align: center;
+    }
+    table.grupo th:first-child { text-align: left; }
+    table.grupo td {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.88rem;
+      color: var(--text);
+      text-align: center;
+    }
+    table.grupo td:first-child { text-align: left; }
+    table.grupo tr.highlight td { background: rgba(0,168,232,0.05); }
+    table.grupo tr:hover td { background: rgba(255,255,255,0.025); }
+    .grupo-pos {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+    }
+    .pos-1 { color: var(--gold); }
+    .pos-2 { color: var(--blue); }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 8: CONTACTO                                           */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #contacto {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #060A14 0%, #0A0E1A 100%);
+    }
+    .contacto-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .contacto-header { text-align: center; margin-bottom: 48px; }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    label .req { color: var(--blue); }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238BA3B8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      background-color: rgba(255,255,255,0.04);
+    }
+    select option { background: #111827; color: var(--text); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,168,232,0.15);
+    }
+    input.error, select.error, textarea.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .field-error {
+      display: none;
+      font-size: 0.8rem;
+      color: #ef4444;
+      margin-top: 6px;
+    }
+    .field-error.visible { display: block; }
+    .form-submit { width: 100%; margin-top: 8px; padding: 16px; font-size: 1.1rem; }
+    .form-submit.loading { opacity: 0.7; pointer-events: none; }
+    .submit-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .spinner {
+      display: none;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .form-submit.loading .spinner { display: block; }
+    .form-submit.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── MODAL ──────────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(0,168,232,0.3);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+    .modal-overlay.open .modal-box { transform: scale(1); }
+    .modal-emoji { font-size: 4rem; margin-bottom: 20px; }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .modal-msg {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .modal-close {
+      padding: 12px 32px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SECCIÓN 9: FOOTER                                             */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #footer {
+      background: #060A14;
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .footer-brand-name span { color: var(--blue); }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .social-link {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .social-link:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-3px);
+    }
+    .footer-col-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .footer-grito {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  SCROLL TO TOP                                                  */
+    /* ═══════════════════════════════════════════════════════════════ */
+    #scrolltop {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border: none;
+      color: var(--white);
+      font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 900;
+      box-shadow: 0 4px 16px rgba(0,168,232,0.4);
+    }
+    #scrolltop.visible { opacity: 1; transform: translateY(0); }
+    #scrolltop:hover { transform: translateY(-4px); }
+
+    /* ═══════════════════════════════════════════════════════════════ */
+    /*  RESPONSIVE                                                     */
+    /* ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .predicciones-main { grid-template-columns: 1fr; }
+      .fortalezas-grid { grid-template-columns: repeat(2, 1fr); }
+      .leyendas-grid { grid-template-columns: 1fr; gap: 0; }
+      .leyenda-divider { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .noticias-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonios-grid { grid-template-columns: 1fr 1fr; }
+      .fixture-card {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+      }
+      .fixture-card .fixture-meta { grid-column: 1 / -1; justify-self: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .noticias-grid { grid-template-columns: 1fr; }
+      .testimonios-grid { grid-template-columns: 1fr; }
+      .community-stats { flex-direction: column; }
+      .comm-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .comm-stat:last-child { border-bottom: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { flex-wrap: wrap; gap: 24px; }
+      .hero-stat-divider { display: none; }
+      .fixture-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .fixture-team.right { flex-direction: row; justify-content: flex-start; }
+      .fixture-score { width: 100%; }
+      .fixture-meta { width: 100%; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
+      .leyenda-stats { grid-template-columns: 1fr 1fr; }
+      .fortalezas-grid { grid-template-columns: 1fr 1fr; }
+      .camino-steps { }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  NAVBAR                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-main">🇦🇷 <span>ALBICELESTE</span> FANS</div>
+        <div class="nav-badge">🏆 Campeones 2022 · 2026 Defensores</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#leyendas">Leyendas</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#predicciones">Predicciones</a></li>
+        <li><a href="#comunidad">Comunidad</a></li>
+        <li><a href="#fixture">Fixture</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#hero"          class="mm-link">Inicio</a>
+  <a href="#leyendas"      class="mm-link">Leyendas</a>
+  <a href="#noticias"      class="mm-link">Noticias</a>
+  <a href="#predicciones"  class="mm-link">Predicciones</a>
+  <a href="#comunidad"     class="mm-link">Comunidad</a>
+  <a href="#fixture"       class="mm-link">Fixture</a>
+  <a href="#contacto"      class="mm-link">Contacto</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HERO                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div id="particles"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        Copa Mundial 2026 · USA / MEX / CAN
+        <span class="hero-eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">
+        ARGENTINA<br>
+        <span class="blue">DEFIENDE</span><br>
+        <span class="gold">SU CORONA</span>
+      </h1>
+      <p class="hero-subtitle">La Albiceleste en el Mundial 2026 — Tres Países. Una Nación. Un Destino.</p>
+      <div class="hero-ctas">
+        <a href="#comunidad" class="btn btn-primary">⚽ Únete a la Comunidad</a>
+        <a href="#fixture" class="btn btn-outline">📅 Ver Fixture</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" id="dayCounter">0</div>
+          <div class="hero-stat-label">Días como Campeones</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">Goles vs Argelia</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">#1</div>
+          <div class="hero-stat-label">Ranking FIFA</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat hero-days-champ">
+          <div class="hero-stat-num">🏆</div>
+          <div class="hero-stat-label">Campeones<br>Defensores</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  LEYENDAS                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="leyendas">
+  <div class="container">
+    <div class="leyendas-header reveal">
+      <div class="section-subtitle">Historia & Grandeza</div>
+      <h2 class="section-title">LAS DOS <span>ESTRELLAS</span> DEL <span class="gold">CIELO</span></h2>
+      <div class="gold-divider">
+        <div class="gold-divider-line"></div>
+        <div class="gold-divider-star">★</div>
+        <div class="gold-divider-line rev"></div>
+      </div>
+      <p style="color:var(--text-muted);max-width:560px;margin:0 auto;font-size:0.95rem;">Dos genios distintos. Una misma camiseta. Un legado que trasciende el tiempo.</p>
+    </div>
+
+    <div class="leyendas-grid">
+      <!-- MARADONA -->
+      <div class="leyenda-card reveal">
+        <div class="leyenda-avatar">
+          D10S
+          <div class="leyenda-champ-icon">🏆</div>
+        </div>
+        <h3 class="leyenda-name">Diego Armando Maradona</h3>
+        <p class="leyenda-period">📅 1977 – 1994 · Selección Argentina</p>
+        <div class="leyenda-stats">
+          <div class="leyenda-stat-card">
+            <div class="num">4</div>
+            <div class="label">Mundiales</div>
+          </div>
+          <div class="leyenda-stat-card gold-stat">
+            <div class="num">8</div>
+            <div class="label">Goles Mundialistas</div>
+          </div>
+          <div class="leyenda-stat-card">
+            <div class="num">1</div>
+            <div class="label">Títulos FIFA</div>
+          </div>
+          <div class="leyenda-stat-card gold-stat">
+            <div class="num">1986</div>
+            <div class="label">Campeón Mundial</div>
+          </div>
+        </div>
+        <blockquote class="leyenda-quote">
+          "A veces pienso que mis goles no son míos... son del pueblo que me los devuelve." — Diego Armando Maradona
+        </blockquote>
+        <div class="leyenda-badges">
+          <span class="leyenda-badge gold">D10S</span>
+          <span class="leyenda-badge gold">El Diego</span>
+          <span class="leyenda-badge">Leyenda Eterna</span>
+          <span class="leyenda-badge">El Gol del Siglo</span>
+          <span class="leyenda-badge gold">Mano de Dios</span>
+        </div>
+      </div>
+
+      <div class="leyenda-divider"></div>
+
+      <!-- MESSI -->
+      <div class="leyenda-card reveal reveal-delay-2">
+        <div class="leyenda-avatar gold-ring">
+          GOAT
+          <div class="leyenda-champ-icon">⭐</div>
+        </div>
+        <h3 class="leyenda-name">Lionel Andrés Messi</h3>
+        <p class="leyenda-period">📅 2005 – Presente · Selección Argentina</p>
+        <div class="leyenda-stats">
+          <div class="leyenda-stat-card">
+            <div class="num">5</div>
+            <div class="label">Mundiales</div>
+          </div>
+          <div class="leyenda-stat-card gold-stat">
+            <div class="num">16+</div>
+            <div class="label">Goles Mundialistas</div>
+          </div>
+          <div class="leyenda-stat-card">
+            <div class="num">3</div>
+            <div class="label">Copas América</div>
+          </div>
+          <div class="leyenda-stat-card gold-stat">
+            <div class="num">2022</div>
+            <div class="label">Campeón Mundial</div>
+          </div>
+        </div>
+        <blockquote class="leyenda-quote">
+          "Soñé tanto con esto que cuando pasó no lo podía creer. Gracias Argentina, gracias a todo el pueblo argentino." — Lionel Messi, Qatar 2022
+        </blockquote>
+        <p style="font-size:0.82rem;color:var(--gold);margin-bottom:20px;font-weight:500;">
+          ⭐ En el Mundial 2026, Messi superó el récord histórico de goles mundialistas de Miroslav Klose (16), convirtiéndose en el máximo goleador de la historia en Copas del Mundo.
+        </p>
+        <div class="leyenda-badges">
+          <span class="leyenda-badge gold">G.O.A.T.</span>
+          <span class="leyenda-badge gold">La Pulga</span>
+          <span class="leyenda-badge">10 Eterno</span>
+          <span class="leyenda-badge">Récord Klose</span>
+          <span class="leyenda-badge gold">Campeón Mundial</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="leyenda-legacy reveal">
+      <p><span>Del Diego al Leo —</span> El legado de la <span style="color:var(--blue)">10</span> <span>es eterno.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  NOTICIAS                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="noticias">
+  <div class="container">
+    <div class="noticias-header reveal">
+      <div class="section-subtitle">Mundial 2026</div>
+      <h2 class="section-title">ÚLTIMAS <span>NOTICIAS</span></h2>
+    </div>
+    <div class="noticias-grid">
+      <!-- Noticia 1 -->
+      <article class="noticia-card reveal">
+        <div class="noticia-img noticia-img-1">
+          <div class="noticia-img-icon">⚽</div>
+          <div class="noticia-img-overlay"></div>
+          <div class="noticia-img-badge"><span class="tag tag-green">Victoria</span></div>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-meta">
+            <span class="tag tag-green">Victoria</span>
+            <span class="noticia-date">15 Jun 2026 · Miami</span>
+          </div>
+          <h3 class="noticia-title">Argentina golea 3-0 a Argelia: hat-trick de Messi en el debut</h3>
+          <p class="noticia-excerpt">La Albiceleste arrancó su defensa del título con una goleada contundente. Messi fue figura con tres goles y una asistencia en un partido que controló Argentina de principio a fin.</p>
+          <a href="#" class="noticia-link">Leer más →</a>
+        </div>
+      </article>
+      <!-- Noticia 2 -->
+      <article class="noticia-card reveal reveal-delay-2">
+        <div class="noticia-img noticia-img-2">
+          <div class="noticia-img-icon">🏆</div>
+          <div class="noticia-img-overlay"></div>
+          <div class="noticia-img-badge"><span class="tag tag-gold">Histórico</span></div>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-meta">
+            <span class="tag tag-gold">Histórico</span>
+            <span class="noticia-date">15 Jun 2026 · Miami</span>
+          </div>
+          <h3 class="noticia-title">Messi rompe el récord de Klose como máximo goleador mundialista</h3>
+          <p class="noticia-excerpt">Con su tercer gol ante Argelia, Lionel Messi superó los 16 goles de Miroslav Klose y se convirtió en el máximo goleador de la historia de las Copas del Mundo. La historia del fútbol se reescribió en Miami.</p>
+          <a href="#" class="noticia-link">Leer más →</a>
+        </div>
+      </article>
+      <!-- Noticia 3 -->
+      <article class="noticia-card reveal reveal-delay-3">
+        <div class="noticia-img noticia-img-3">
+          <div class="noticia-img-icon">📅</div>
+          <div class="noticia-img-overlay"></div>
+          <div class="noticia-img-badge"><span class="tag tag-blue">Próximo</span></div>
+        </div>
+        <div class="noticia-body">
+          <div class="noticia-meta">
+            <span class="tag tag-blue">Próximo</span>
+            <span class="noticia-date">24 Jun 2026 · Dallas</span>
+          </div>
+          <h3 class="noticia-title">Fixture confirmado: Argentina vs Austria en la segunda fecha del Grupo J</h3>
+          <p class="noticia-excerpt">Tras el triunfo inaugural, la Albiceleste ya piensa en la segunda jornada frente a Austria, vigente subcampeona europea. Scaloni prepara variantes para mantener el nivel mostrado ante Argelia.</p>
+          <a href="#" class="noticia-link">Leer más →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  PREDICCIONES                                                   -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="predicciones">
+  <div class="container">
+    <div class="predicciones-header reveal">
+      <div class="section-subtitle">Análisis · Estadísticas</div>
+      <h2 class="section-title">CHANCES DE <span class="gold">ARGENTINA</span></h2>
+    </div>
+
+    <div class="predicciones-main">
+      <!-- Probabilidad -->
+      <div class="chance-block reveal">
+        <div class="chance-label">Probabilidad de ser Campeón</div>
+        <div class="chance-pct">78%</div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" data-width="78" id="progBar1"></div>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:16px;">Según modelos estadísticos que combinan rendimiento histórico, forma actual y capacidad del plantel.</p>
+        <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#22c55e;">96%</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Clasificación<br>Fase de Grupos</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--blue);">89%</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Llegar a<br>Cuartos de Final</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);">65%</div>
+            <div style="font-size:0.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Llegar a<br>la Final</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Camino proyectado -->
+      <div class="camino-block reveal reveal-delay-2">
+        <div class="camino-title">Camino Proyectado al Título</div>
+        <div class="camino-steps">
+          <div class="camino-step">
+            <div class="camino-dot dot-done"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage">Fase de Grupos</div>
+              <div class="camino-rival">Argelia, Austria, Marruecos</div>
+            </div>
+            <div class="camino-pct done">✓</div>
+          </div>
+          <div class="camino-step">
+            <div class="camino-dot dot-active"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage">Dieciseisavos</div>
+              <div class="camino-rival">vs 2º del Grupo K</div>
+            </div>
+            <div class="camino-pct">94%</div>
+          </div>
+          <div class="camino-step">
+            <div class="camino-dot dot-next"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage">Octavos de Final</div>
+              <div class="camino-rival">Rival a confirmar</div>
+            </div>
+            <div class="camino-pct">88%</div>
+          </div>
+          <div class="camino-step">
+            <div class="camino-dot dot-next"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage">Cuartos de Final</div>
+              <div class="camino-rival">vs Francia / Portugal</div>
+            </div>
+            <div class="camino-pct">71%</div>
+          </div>
+          <div class="camino-step">
+            <div class="camino-dot dot-next"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage">Semifinales</div>
+              <div class="camino-rival">vs Brasil / España</div>
+            </div>
+            <div class="camino-pct">64%</div>
+          </div>
+          <div class="camino-step">
+            <div class="camino-dot dot-next"></div>
+            <div class="camino-step-info">
+              <div class="camino-stage" style="color:var(--gold);">🏆 GRAN FINAL</div>
+              <div class="camino-rival" style="color:var(--gold);">Nueva York · 19 Jul 2026</div>
+            </div>
+            <div class="camino-pct" style="color:var(--gold);">78%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fortalezas -->
+    <div class="reveal">
+      <h3 style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:24px;text-align:center;">Fortalezas del Equipo</h3>
+    </div>
+    <div class="fortalezas-grid">
+      <div class="fortaleza-card reveal">
+        <div class="fortaleza-icon">🐐</div>
+        <div class="fortaleza-name">Messi</div>
+        <div class="fortaleza-desc">El mejor jugador de la historia en su última gran actuación mundialista</div>
+      </div>
+      <div class="fortaleza-card reveal reveal-delay-1">
+        <div class="fortaleza-icon">🛡️</div>
+        <div class="fortaleza-name">Defensa Sólida</div>
+        <div class="fortaleza-desc">Línea defensiva titular invicta en 18 de los últimos 20 partidos</div>
+      </div>
+      <div class="fortaleza-card reveal reveal-delay-2">
+        <div class="fortaleza-icon">🤝</div>
+        <div class="fortaleza-name">Colectivo</div>
+        <div class="fortaleza-desc">Esquema de equipo cohesionado bajo las directivas de Scaloni</div>
+      </div>
+      <div class="fortaleza-card reveal reveal-delay-3">
+        <div class="fortaleza-icon">🧠</div>
+        <div class="fortaleza-name">Experiencia</div>
+        <div class="fortaleza-desc">Jugadores veteranos con múltiples Copas del Mundo disputadas</div>
+      </div>
+    </div>
+
+    <!-- Tabla histórica -->
+    <div class="tabla-historica reveal">
+      <div class="tabla-title">Rendimiento Histórico · Últimas 5 Ediciones</div>
+      <table class="historica">
+        <thead>
+          <tr>
+            <th>Año</th>
+            <th>Sede</th>
+            <th>Resultado</th>
+            <th>PJ</th>
+            <th>G</th>
+            <th>GF</th>
+            <th>GC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>2026 🇺🇸</strong></td>
+            <td>USA/MEX/CAN</td>
+            <td><span class="result-badge rb-winner">🏆 En Curso</span></td>
+            <td>1</td><td>1</td><td>3</td><td>0</td>
+          </tr>
+          <tr>
+            <td><strong>2022 🇶🇦</strong></td>
+            <td>Qatar</td>
+            <td><span class="result-badge rb-winner">🏆 Campeón</span></td>
+            <td>7</td><td>4</td><td>15</td><td>8</td>
+          </tr>
+          <tr>
+            <td><strong>2018 🇷🇺</strong></td>
+            <td>Rusia</td>
+            <td><span class="result-badge rb-cuartos">⚽ 16avos</span></td>
+            <td>4</td><td>1</td><td>6</td><td>6</td>
+          </tr>
+          <tr>
+            <td><strong>2014 🇧🇷</strong></td>
+            <td>Brasil</td>
+            <td><span class="result-badge rb-final">🥈 Subcampeón</span></td>
+            <td>7</td><td>4</td><td>8</td><td>5</td>
+          </tr>
+          <tr>
+            <td><strong>2010 🇿🇦</strong></td>
+            <td>Sudáfrica</td>
+            <td><span class="result-badge rb-cuartos">⚽ Cuartos</span></td>
+            <td>5</td><td>3</td><td>14</td><td>6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  COMUNIDAD                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="comunidad">
+  <div class="container">
+    <div class="comunidad-header reveal">
+      <div class="section-subtitle">Fanáticos de Todo el Mundo</div>
+      <h2 class="section-title">LA COMUNIDAD <span>ALBICELESTE</span></h2>
+    </div>
+
+    <div class="community-stats reveal">
+      <div class="comm-stat">
+        <div class="comm-stat-num" data-target="847293" id="stat1">0</div>
+        <div class="comm-stat-label">⚽ Fanáticos Registrados</div>
+      </div>
+      <div class="comm-stat">
+        <div class="comm-stat-num gold" data-target="12458" id="stat2">0</div>
+        <div class="comm-stat-label">📝 Posts del Mundial</div>
+      </div>
+      <div class="comm-stat">
+        <div class="comm-stat-num" data-target="3891" id="stat3">0</div>
+        <div class="comm-stat-label">💬 Conversaciones Activas</div>
+      </div>
+    </div>
+
+    <div class="testimonios-grid">
+      <!-- Fan 1 -->
+      <div class="testimonio-card reveal">
+        <div class="testimonio-header">
+          <div class="fan-avatar avatar-blue">MA</div>
+          <div>
+            <div class="fan-name">Martín Acosta</div>
+            <div class="fan-meta">📍 Buenos Aires · hace 2 horas</div>
+          </div>
+        </div>
+        <p class="testimonio-text">
+          ¡¡Que debut tremendo de nuestra Argentina!! Tres a cero y Messi rompió el récord de Klose. Estaba llorando en el living viendo ese tercer gol. Vamos carajo, a repetir la copa del mundo 🇦🇷🏆 ¡EL MUNDO ES NUESTRO!
+        </p>
+        <div class="testimonio-footer">
+          <span class="testimonio-likes">❤️ 2,847 likes</span>
+          <span class="testimonio-likes">💬 318 comentarios</span>
+        </div>
+      </div>
+      <!-- Fan 2 -->
+      <div class="testimonio-card reveal reveal-delay-2">
+        <div class="testimonio-header">
+          <div class="fan-avatar avatar-gold">LR</div>
+          <div>
+            <div class="fan-name">Luciana Rodríguez</div>
+            <div class="fan-meta">📍 Rosario · hace 5 horas</div>
+          </div>
+        </div>
+        <p class="testimonio-text">
+          Soy de Rosario, la ciudad de Messi, y nunca imaginé que en 2026 él aún seguiría regalándonos magia. Es el mejor de la historia, no hay discusión. Ver cómo superó a Klose con esa definición fue histórico. Leo, te amamos. 🐐✨
+        </p>
+        <div class="testimonio-footer">
+          <span class="testimonio-likes">❤️ 5,122 likes</span>
+          <span class="testimonio-likes">💬 674 comentarios</span>
+        </div>
+      </div>
+      <!-- Fan 3 -->
+      <div class="testimonio-card reveal reveal-delay-3">
+        <div class="testimonio-header">
+          <div class="fan-avatar avatar-teal">FC</div>
+          <div>
+            <div class="fan-name">Federico Campos</div>
+            <div class="fan-meta">📍 Córdoba · hace 8 horas</div>
+          </div>
+        </div>
+        <p class="testimonio-text">
+          Mi predicción: Argentina bicampeona el 19 de julio en Nueva York. Tienen el equipo, tienen el DT y tienen al mejor jugador del mundo. La final va a ser contra Francia, como en Qatar, y esta vez también la ganamos. ¡Vamos Argentina! 🇦🇷🏆⭐⭐⭐
+        </p>
+        <div class="testimonio-footer">
+          <span class="testimonio-likes">❤️ 1,445 likes</span>
+          <span class="testimonio-likes">💬 201 comentarios</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="comunidad-cta reveal">
+      <a href="#contacto" class="btn btn-gold" style="font-size:1.1rem;padding:18px 44px;">
+        🇦🇷 Unirme a la Comunidad Albiceleste
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FIXTURE                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="fixture">
+  <div class="container">
+    <div class="fixture-header reveal">
+      <div class="section-subtitle">Copa Mundial 2026</div>
+      <h2 class="section-title">CALENDARIO <span>ARGENTINA</span></h2>
+    </div>
+    <div class="fixture-group-label reveal">GRUPO J — FASE DE GRUPOS</div>
+
+    <div class="fixture-cards">
+      <!-- Partido 1 — Resultado -->
+      <div class="fixture-card resultado reveal">
+        <div class="fixture-team">
+          <div class="fixture-flag">🇦🇷</div>
+          <div>
+            <div class="fixture-team-name">Argentina</div>
+            <div class="fixture-team-country">Grupo J · Defensor</div>
+          </div>
+        </div>
+        <div class="fixture-score">
+          <div class="fixture-score-num">3 – 0</div>
+          <div class="fixture-score-date">15 Jun · 21:00 ARG</div>
+        </div>
+        <div class="fixture-team right">
+          <div class="fixture-flag">🇩🇿</div>
+          <div>
+            <div class="fixture-team-name">Argelia</div>
+            <div class="fixture-team-country">Grupo J</div>
+          </div>
+        </div>
+        <div class="fixture-meta">
+          <div><span class="fixture-status status-done">✅ Finalizado</span></div>
+          <div class="fixture-venue">🏟️ Miami Gardens · Florida</div>
+        </div>
+      </div>
+
+      <!-- Partido 2 — Próximo -->
+      <div class="fixture-card proximo reveal">
+        <div class="fixture-team">
+          <div class="fixture-flag">🇦🇷</div>
+          <div>
+            <div class="fixture-team-name">Argentina</div>
+            <div class="fixture-team-country">Grupo J · Defensor</div>
+          </div>
+        </div>
+        <div class="fixture-score">
+          <div class="fixture-score-vs">VS</div>
+          <div class="fixture-score-date">24 Jun · 20:00 ARG</div>
+        </div>
+        <div class="fixture-team right">
+          <div class="fixture-flag">🇦🇹</div>
+          <div>
+            <div class="fixture-team-name">Austria</div>
+            <div class="fixture-team-country">Grupo J</div>
+          </div>
+        </div>
+        <div class="fixture-meta">
+          <div><span class="fixture-status status-next">⏳ Próximo</span></div>
+          <div class="fixture-venue">🏟️ AT&T Stadium · Dallas</div>
+          <button class="btn-remind" onclick="remindMe('Argentina vs Austria', '24 Jun 2026 · 20:00 hs ARG · Dallas')">🔔 Recordarme</button>
+        </div>
+      </div>
+
+      <!-- Partido 3 — Próximo -->
+      <div class="fixture-card proximo reveal">
+        <div class="fixture-team">
+          <div class="fixture-flag">🇦🇷</div>
+          <div>
+            <div class="fixture-team-name">Argentina</div>
+            <div class="fixture-team-country">Grupo J · Defensor</div>
+          </div>
+        </div>
+        <div class="fixture-score">
+          <div class="fixture-score-vs">VS</div>
+          <div class="fixture-score-date">28 Jun · 22:00 ARG</div>
+        </div>
+        <div class="fixture-team right">
+          <div class="fixture-flag">🇲🇦</div>
+          <div>
+            <div class="fixture-team-name">Marruecos</div>
+            <div class="fixture-team-country">Grupo J</div>
+          </div>
+        </div>
+        <div class="fixture-meta">
+          <div><span class="fixture-status status-next">⏳ Próximo</span></div>
+          <div class="fixture-venue">🏟️ NRG Stadium · Houston</div>
+          <button class="btn-remind" onclick="remindMe('Argentina vs Marruecos', '28 Jun 2026 · 22:00 hs ARG · Houston')">🔔 Recordarme</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de posiciones -->
+    <div class="grupo-section reveal">
+      <div class="grupo-title">📊 Posiciones — Grupo J</div>
+      <table class="grupo">
+        <thead>
+          <tr>
+            <th>Pos</th>
+            <th>Equipo</th>
+            <th>PJ</th>
+            <th>G</th>
+            <th>E</th>
+            <th>P</th>
+            <th>GF</th>
+            <th>GC</th>
+            <th>Dif</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td><span class="grupo-pos pos-1">1°</span></td>
+            <td>🇦🇷 <strong>Argentina</strong></td>
+            <td>1</td><td>1</td><td>0</td><td>0</td><td>3</td><td>0</td><td>+3</td>
+            <td><strong style="color:var(--gold)">3</strong></td>
+          </tr>
+          <tr>
+            <td><span class="grupo-pos pos-2">2°</span></td>
+            <td>🇦🇹 Austria</td>
+            <td>1</td><td>1</td><td>0</td><td>0</td><td>2</td><td>1</td><td>+1</td>
+            <td><strong>3</strong></td>
+          </tr>
+          <tr>
+            <td><span class="grupo-pos" style="color:var(--text-muted)">3°</span></td>
+            <td>🇲🇦 Marruecos</td>
+            <td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>2</td><td>-1</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td><span class="grupo-pos" style="color:var(--text-muted)">4°</span></td>
+            <td>🇩🇿 Argelia</td>
+            <td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>3</td><td>-3</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  CONTACTO                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="contacto" class="diamond-bg">
+  <div class="container">
+    <div class="contacto-inner">
+      <div class="contacto-header reveal">
+        <div class="section-subtitle">Escribinos</div>
+        <h2 class="section-title">ENVIANOS TU <span>MENSAJE</span></h2>
+        <p style="color:var(--text-muted);margin-top:12px;">¿Tenés algo para decirnos? Sugerencias, ideas, o simplemente un ¡Vamos Argentina! Son bienvenidos.</p>
+      </div>
+      <form id="contactForm" class="reveal" novalidate>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="form-group">
+            <label for="nombre">Nombre <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="given-name" />
+            <div class="field-error" id="nombreError">Por favor ingresá tu nombre.</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" />
+            <div class="field-error" id="emailError">Ingresá un email válido.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tema">Tema <span class="req">*</span></label>
+          <select id="tema" name="tema">
+            <option value="">Seleccioná un tema...</option>
+            <option value="consulta">Consulta General</option>
+            <option value="sugerencia">Sugerencia</option>
+            <option value="reporte">Reporte de Problema</option>
+            <option value="prensa">Prensa / Medios</option>
+            <option value="otro">Otro</option>
+          </select>
+          <div class="field-error" id="temaError">Seleccioná un tema.</div>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje <span class="req">*</span></label>
+          <textarea id="mensaje" name="mensaje" placeholder="Escribí tu mensaje acá (mínimo 10 caracteres)..."></textarea>
+          <div class="field-error" id="mensajeError">El mensaje debe tener al menos 10 caracteres.</div>
+        </div>
+        <button type="submit" class="btn btn-primary form-submit">
+          <div class="submit-inner">
+            <div class="spinner"></div>
+            <span class="btn-text">🇦🇷 Enviar Mensaje</span>
+          </div>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">🇦🇷 <span>ALBICELESTE</span> FANS</div>
+        <p class="footer-tagline">El centro digital de la comunidad Argentina. Seguimos, analizamos y celebramos cada paso de la Albiceleste en su camino a una nueva gloria mundial.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="Instagram" title="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter/X" title="Twitter/X">🐦</a>
+          <a href="#" class="social-link" aria-label="Facebook" title="Facebook">👍</a>
+          <a href="#" class="social-link" aria-label="TikTok" title="TikTok">🎵</a>
+          <a href="#" class="social-link" aria-label="YouTube" title="YouTube">▶️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Secciones</div>
+        <ul class="footer-links">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#leyendas">Leyendas</a></li>
+          <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#predicciones">Predicciones</a></li>
+          <li><a href="#comunidad">Comunidad</a></li>
+          <li><a href="#fixture">Fixture</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Información</div>
+        <ul class="footer-links">
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Términos de Uso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#">Prensa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Centro de Fans Argentinos. Todos los derechos reservados.</div>
+      <div class="footer-grito">Vamo Argentina, carajo! 🇦🇷⚽🏆</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button id="scrolltop" aria-label="Volver arriba">↑</button>
+
+<!-- Modal de éxito -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-emoji">🇦🇷</div>
+    <h3 class="modal-title" id="modalTitle">¡Mensaje Enviado!</h3>
+    <p class="modal-msg">¡Gracias por escribirnos! Te respondemos a la brevedad.<br><br><strong style="color:var(--blue)">¡Vamo Argentina! 🏆⚽</strong></p>
+    <button class="btn btn-primary modal-close" onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  JAVASCRIPT                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<script>
+/* ─── NAVBAR SCROLL ─────────────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('scrolltop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+/* ─── HAMBURGER MENU ────────────────────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+function toggleMenu(open) {
+  hamburger.classList.toggle('open', open);
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+  mobileMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+document.querySelectorAll('.mm-link').forEach(link => {
+  link.addEventListener('click', () => toggleMenu(false));
+});
+mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(false); });
+
+/* ─── SCROLL REVEAL ─────────────────────────────────────────────── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ─── PROGRESS BARS ─────────────────────────────────────────────── */
+const progressObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bar = entry.target;
+      const w = bar.getAttribute('data-width') || '0';
+      bar.style.width = w + '%';
+      progressObserver.unobserve(bar);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.progress-bar-fill').forEach(bar => progressObserver.observe(bar));
+
+/* ─── COUNT-UP ANIMATION ────────────────────────────────────────── */
+function countUp(el, target, duration = 2000) {
+  const start = performance.now();
+  const update = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    el.textContent = current.toLocaleString('es-AR');
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = target.toLocaleString('es-AR');
+  };
+  requestAnimationFrame(update);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      countUp(el, target);
+      statsObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+['stat1','stat2','stat3'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) statsObserver.observe(el);
+});
+
+/* ─── DAYS AS CHAMPION ──────────────────────────────────────────── */
+(function() {
+  const champDate = new Date('2022-12-18');
+  const today = new Date('2026-06-26');
+  const diff = Math.floor((today - champDate) / (1000 * 60 * 60 * 24));
+  const el = document.getElementById('dayCounter');
+  if (el) {
+    el.setAttribute('data-target-days', diff);
+    let count = 0;
+    const step = Math.ceil(diff / 60);
+    const timer = setInterval(() => {
+      count = Math.min(count + step, diff);
+      el.textContent = count.toLocaleString('es-AR');
+      if (count >= diff) clearInterval(timer);
+    }, 30);
+  }
+})();
+
+/* ─── PARTICLES ──────────────────────────────────────────────────── */
+(function() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  const colors = ['rgba(0,168,232,0.6)', 'rgba(255,215,0,0.5)', 'rgba(255,255,255,0.3)'];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*-20}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*10+8}s;
+      animation-delay:${Math.random()*8}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ─── SMOOTH SCROLL ──────────────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ─── SCROLL TO TOP ──────────────────────────────────────────────── */
+document.getElementById('scrolltop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─── REMIND ME ──────────────────────────────────────────────────── */
+function remindMe(match, detail) {
+  const msg = `⏰ ¡Recordatorio activado!\n\n🇦🇷 ${match}\n📅 ${detail}\n\n¡Vamo Argentina! 🏆`;
+  alert(msg);
+}
+
+/* ─── FORM VALIDATION & SUBMIT ───────────────────────────────────── */
+const form = document.getElementById('contactForm');
+function showError(id, errId, show) {
+  const field = document.getElementById(id);
+  const err = document.getElementById(errId);
+  if (!field || !err) return;
+  field.classList.toggle('error', show);
+  err.classList.toggle('visible', show);
+}
+function validateEmail(e) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+}
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nombre = document.getElementById('nombre').value.trim();
+  const email  = document.getElementById('email').value.trim();
+  const tema   = document.getElementById('tema').value;
+  const mensaje = document.getElementById('mensaje').value.trim();
+  let valid = true;
+
+  showError('nombre', 'nombreError', !nombre);
+  if (!nombre) valid = false;
+
+  const emailOk = email && validateEmail(email);
+  showError('email', 'emailError', !emailOk);
+  if (!emailOk) valid = false;
+
+  showError('tema', 'temaError', !tema);
+  if (!tema) valid = false;
+
+  const mensajeOk = mensaje.length >= 10;
+  showError('mensaje', 'mensajeError', !mensajeOk);
+  if (!mensajeOk) valid = false;
+
+  if (!valid) return;
+
+  const submitBtn = form.querySelector('.form-submit');
+  submitBtn.classList.add('loading');
+
+  setTimeout(() => {
+    submitBtn.classList.remove('loading');
+    form.reset();
+    document.getElementById('successModal').classList.add('open');
+  }, 1800);
+});
+
+/* live validation feedback */
+['nombre','email','tema','mensaje'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    if (id === 'nombre') showError('nombre', 'nombreError', !el.value.trim());
+    if (id === 'email')  showError('email', 'emailError', !validateEmail(el.value.trim()));
+    if (id === 'tema')   showError('tema', 'temaError', !el.value);
+    if (id === 'mensaje') showError('mensaje', 'mensajeError', el.value.trim().length < 10);
+  });
+});
+
+/* ─── MODAL CLOSE ────────────────────────────────────────────────── */
+function closeModal() {
+  document.getElementById('successModal').classList.remove('open');
+}
+document.getElementById('successModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>

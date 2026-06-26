@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PFO2 — Prompt Engineering en Agentes de IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #060608;
+      --surface:    rgba(255,255,255,0.04);
+      --glass:      rgba(255,255,255,0.06);
+      --border:     rgba(255,255,255,0.08);
+      --accent1:    #00D4FF;
+      --accent2:    #7B2FFF;
+      --accent3:    #FF6B35;
+      --text:       #F0F0F4;
+      --muted:      rgba(240,240,244,0.38);
+      --syne:       'Syne', sans-serif;
+      --jakarta:    'Plus Jakarta Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--jakarta);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NOISE + BG ORBS ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80vw 60vh at 10% 10%, rgba(123,47,255,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60vw 50vh at 90% 80%, rgba(0,212,255,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50vw 40vh at 50% 50%, rgba(255,107,53,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 0 0;
+      margin-bottom: 100px;
+    }
+
+    .nav-logo {
+      font-family: var(--syne);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-tag {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 100px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: end;
+      margin-bottom: 96px;
+      position: relative;
+    }
+
+    .hero-left { padding-right: 40px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent1);
+    }
+
+    h1 {
+      font-family: var(--syne);
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    h1 .line-dim {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    h1 .line-bright {
+      display: block;
+      background: linear-gradient(135deg, #fff 0%, var(--accent1) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 380px;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+      padding-bottom: 8px;
+    }
+
+    .meta-block {
+      text-align: right;
+    }
+
+    .meta-block .label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .meta-block .value {
+      font-family: var(--syne);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── SEPARATOR ── */
+    .separator {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+      margin-bottom: 72px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── CARDS GRID (asimétrico) ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    /* Card 1 (prompt) ocupa toda la primera fila */
+    .card-prompt {
+      grid-column: 1 / -1;
+    }
+
+    /* ── CARD BASE ── */
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 44px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.35s cubic-bezier(0.23,1,0.32,1),
+                  border-color 0.35s,
+                  box-shadow 0.35s;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .card-prompt::before {
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(123,47,255,0.1), transparent);
+    }
+
+    .card-codex::before {
+      background: radial-gradient(ellipse 80% 80% at 20% 80%, rgba(0,212,255,0.1), transparent);
+    }
+
+    .card-claude::before {
+      background: radial-gradient(ellipse 80% 80% at 80% 20%, rgba(255,107,53,0.1), transparent);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.16);
+      box-shadow:
+        0 24px 64px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    /* Número fantasma de fondo */
+    .card-num-bg {
+      position: absolute;
+      right: 32px;
+      bottom: -16px;
+      font-family: var(--syne);
+      font-size: 120px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.03);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Pill de agente */
+    .card-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-purple { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); }
+    .dot-cyan   { background: var(--accent1); box-shadow: 0 0 6px var(--accent1); }
+    .dot-orange { background: var(--accent3); box-shadow: 0 0 6px var(--accent3); }
+
+    .card-title {
+      font-family: var(--syne);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-prompt .card-title { font-size: 28px; }
+
+    .card-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+    }
+
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 28px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      transition: color 0.25s, gap 0.25s;
+    }
+
+    .card:hover .card-arrow {
+      gap: 10px;
+      color: var(--text);
+    }
+
+    .card-prompt:hover .card-arrow { color: var(--accent2); }
+    .card-codex:hover  .card-arrow { color: var(--accent1); }
+    .card-claude:hover .card-arrow { color: var(--accent3); }
+
+    .card-model-badge {
+      position: absolute;
+      top: 40px;
+      right: 44px;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer span {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero        { animation: fadeUp 0.7s ease both; }
+    .section-label { animation: fadeUp 0.7s 0.15s ease both; }
+    .card-prompt { animation: fadeUp 0.7s 0.2s ease both; }
+    .card-codex  { animation: fadeUp 0.7s 0.3s ease both; }
+    .card-claude { animation: fadeUp 0.7s 0.38s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .wrapper { padding: 0 20px 80px; }
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      .hero-left { padding-right: 0; }
+      .hero-right { align-items: flex-start; }
+      .meta-block { text-align: left; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .card-prompt { grid-column: 1; }
+      .card-model-badge { display: none; }
+      nav { margin-bottom: 60px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <span class="nav-logo">IFTS N°29</span>
+    <span class="nav-tag">Entrega · 26.06.2026</span>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">PFO2 · Front End</p>
+      <h1>
+        <span class="line-dim">Prompt</span>
+        <span class="line-bright">Engineering</span>
+      </h1>
+      <p class="hero-sub">Diseño y ejecución de un único prompt de alta precisión evaluado en dos agentes de IA para comparar su capacidad de resolución autónoma.</p>
+    </div>
+    <div class="hero-right">
+      <div class="meta-block">
+        <p class="label">Estudiante</p>
+        <p class="value">Sebastián Mombelli</p>
+      </div>
+      <div class="meta-block">
+        <p class="label">Materia</p>
+        <p class="value">Desarrollo de Front End</p>
+      </div>
+      <div class="meta-block">
+        <p class="label">Comisión</p>
+        <p class="value">Lunes · IFTS 29</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <p class="section-label">Contenido del proyecto</p>
+
+  <div class="cards-grid">
+
+    <!-- CARD 1: PROMPT -->
+    <a class="card card-prompt" href="prompt_landing_argentina.md" target="_blank">
+      <span class="card-num-bg">01</span>
+      <div class="card-pill"><span class="dot dot-purple"></span>Instrucción inicial</div>
+      <h2 class="card-title">Prompt utilizado</h2>
+      <p class="card-desc">Texto completo del prompt de alta precisión diseñado siguiendo las guías oficiales de Anthropic y OpenAI. Incluye contexto, motivación, estructura técnica, secciones, interacciones y formato de salida.</p>
+      <span class="card-arrow">Ver prompt →</span>
+    </a>
+
+    <!-- CARD 2: CODEX -->
+    <a class="card card-codex" href="CODEX/index.html" target="_blank">
+      <span class="card-num-bg">02</span>
+      <span class="card-model-badge">GPT-5.5 · Alto</span>
+      <div class="card-pill"><span class="dot dot-cyan"></span>Agente 1 · OpenAI Codex</div>
+      <h2 class="card-title">Centro de Fans Argentinos</h2>
+      <p class="card-desc">Landing page generada de forma autónoma por Codex con GPT-5.5 en modo de razonamiento alto.</p>
+      <span class="card-arrow">Ver resultado →</span>
+    </a>
+
+    <!-- CARD 3: CLAUDE CODE -->
+    <a class="card card-claude" href="CLAUDE/index.html" target="_blank">
+      <span class="card-num-bg">03</span>
+      <span class="card-model-badge">Sonnet 4.6</span>
+      <div class="card-pill"><span class="dot dot-orange"></span>Agente 2 · Claude Code</div>
+      <h2 class="card-title">Centro de Fans Argentinos</h2>
+      <p class="card-desc">Landing page generada de forma autónoma por Claude Code con el modelo Claude Sonnet 4.6.</p>
+      <span class="card-arrow">Ver resultado →</span>
+    </a>
+
+  </div>
+
+  <footer>
+    <span>© 2026 · Sebastián Mombelli · PFO2</span>
+    <span>Prompt Engineering en Agentes de IA</span>
+  </footer>
+
+</div>
+</body>
+</html>
